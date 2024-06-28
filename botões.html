@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Botões de Link em Imagem</title>
+<style>
+  .imagem-com-botoes {
+    position: relative;
+    display: inline-block;
+  }
+  .botao-link {
+    position: absolute;
+    background-color: #007bff; /* Cor do botão */
+    color: white;
+    text-align: center;
+    padding: 4px 8px;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  /* Posicione seus botões de acordo com as coordenadas da imagem */
+  .botao-aplicacao {
+    top: 20px;
+    left: 30px;
+  }
+  .botao-apresentacao {
+    top: 60px;
+    left: 30px;
+  }
+  /* Adicione mais classes conforme necessário para os outros campos */
+</style>
+</head>
+<body>
+
+<div class="imagem-com-botoes">
+  <img src="OSI.png" alt="Diagrama de Protocolos">
+  <!-- Substitua # pelos links desejados -->
+  <a href="#" class="botao-link botao-aplicacao">APLICAÇÃO</a>
+  <a href="#" class="botao-link botao-apresentacao">APRESENTAÇÃO</a>
+  <!-- Adicione mais botões conforme necessário -->
+</div>
+
+</body>
+</html>

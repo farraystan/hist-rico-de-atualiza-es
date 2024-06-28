@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSCANDO</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0a0606;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #0f0c0c;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(246, 246, 248, 0.916);
+        text-align: center;
+        color: aliceblue;
+    }
+    .servico {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .servico-item {
+        width: calc(50% - 10px);
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+        border: 2px solid white; /* Adicionando a borda branca */
+    }
+    .servico-img {
+        width: 100%;
+        border-radius: 5px;
+    }
+    .servico-titulo,
+    .servico-descricao {
+        font-size: 18px;
+        margin-top: 10px;
+        color: aliceblue;
+        position: relative;
+    }
+    .editar-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        color: #eff1f3;
+    }
+    .editar-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    .adicionar-bloco {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .escolher-imagem {
+        display: none;
+    }
+    .botao-escolher {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>CONHECIMENTO</h2>
+    <div class="servico" id="servico-container">
+        <!-- Seu conteúdo existente aqui -->
+        <div class="servico-item">
+            <a href="#" class="editar-icon" onclick="abrirRepositorio(this)">
+                <img src="editar_icone.png" alt="Editar">
+            </a>
+            <a href="Matemática.html"><img src="Math-HD-Wallpapers.jpg" alt="Matemática" class="servico-img"></a>
+            <div class="servico-titulo" contenteditable="true">Matemática</div>
+            <div class="servico-descricao" contenteditable="true">conhecimento sobre os números</div>
+        </div>
+    </div>    
+    <button class="adicionar-bloco" onclick="adicionarBloco()">+</button>
+</div>
+
+<!-- Formulário para escolher imagem -->
+<form id="form-escolher-imagem" style="display: none;">
+    <input type="file" accept="image/*" class="escolher-imagem" onchange="selecionarImagem(this)">
+</form>
+
+<script>
+    function adicionarBloco() {
+        var servicoContainer = document.getElementById('servico-container');
+        var novoBloco = document.createElement('div');
+        novoBloco.classList.add('servico-item');
+
+        var editarIcon = document.createElement('a');
+        editarIcon.classList.add('editar-icon');
+        editarIcon.setAttribute('href', '#');
+        editarIcon.setAttribute('onclick', 'abrirRepositorio(this)');
+        var editarIconImg = document.createElement('img');
+        editarIconImg.setAttribute('src', 'editar_icone.png');
+        editarIconImg.setAttribute('alt', 'Editar');
+        editarIcon.appendChild(editarIconImg);
+
+        var novoLink = document.createElement('a');
+        novoLink.setAttribute('href', '#');
+
+        var novaImagem = document.createElement('img');
+        novaImagem.setAttribute('src', 'caminho_para_sua_imagem');
+        novaImagem.setAttribute('alt', 'Nova Imagem');
+        novaImagem.classList.add('servico-img');
+
+        novoLink.appendChild(novaImagem);
+
+        var novoTitulo = document.createElement('div');
+        novoTitulo.classList.add('servico-titulo');
+        novoTitulo.setAttribute('contenteditable', 'true');
+        novoTitulo.textContent = 'Novo Título';
+
+        var novaDescricao = document.createElement('div');
+        novaDescricao.classList.add('servico-descricao');
+        novaDescricao.setAttribute('contenteditable', 'true');
+        novaDescricao.textContent = 'Nova Descrição';
+
+        novoBloco.appendChild(editarIcon);
+        novoBloco.appendChild(novoLink);
+        novoBloco.appendChild(novoTitulo);
+        novoBloco.appendChild(novaDescricao);
+
+        servicoContainer.appendChild(novoBloco);
+    }
+
+    function abrirRepositorio() {
+        var escolherImagem = document.querySelector('.escolher-imagem');
+        escolherImagem.click();
+    }
+
+    function selecionarImagem(input) {
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var novaImagem = e.target.result;
+                var servicoContainer = document.getElementById('servico-container');
+                var novoBloco = servicoContainer.lastChild;
+
+                var linkImagem = novoBloco.querySelector('.servico-img');
+                linkImagem.src = novaImagem;
+
+                // Insira a lógica para exibir a nova imagem como desejar
+                console.log('Nova imagem selecionada:', novaImagem);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>

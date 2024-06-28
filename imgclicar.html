@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Imagem Clicável</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  /* Estilos para o corpo da página */
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Define a altura do corpo para a altura da janela do navegador */
+    background-color: #f0f0f0; /* Cor de fundo opcional */
+  }
+
+  /* Estilos para a imagem */
+  img {
+    width: 300px; /* Largura da imagem */
+    height: auto; /* Altura da imagem ajustada automaticamente para manter a proporção */
+  }
+  </style>
+
+</head>
+<body>
+
+  <h2>Clique na Imagem</h2>
+
+  <img src="OSI.png" alt="Imagem Clicável" usemap="#imagemMapa">
+
+  <map name="imagemMapa">
+    <area shape="rect" coords="0,0,100,100" href="pagina1.html" alt="Área 1">
+    <area shape="rect" coords="100,100,200,200" href="pagina2.html" alt="Área 2">
+    <!-- Você pode adicionar mais áreas conforme necessário -->
+  </map>
+
+</body>
+</html>

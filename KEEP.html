@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSCANDO</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0a0606;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #0f0c0c;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(246, 246, 248, 0.916);
+        text-align: center;
+        color: aliceblue;
+    }
+    .servico {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .servico-item {
+        width: calc(50% - 10px);
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+        border: 2px solid white; /* Adicionando a borda branca */
+    }
+    .servico-titulo,
+    .servico-descricao {
+        font-size: 18px;
+        margin-top: 10px;
+        color: aliceblue;
+        position: relative;
+    }
+    .editar-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        color: #eff1f3;
+    }
+    .editar-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    .adicionar-bloco {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .escolher-imagem {
+        display: none;
+    }
+    .botao-escolher {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>CONHECIMENTO</h2>
+    <div class="servico" id="servico-container">
+        <!-- Seu conteúdo existente aqui -->
+        <div class="servico-item">
+            <div class="servico-titulo" contenteditable="true">Matemática</div>
+            <div class="servico-descricao" contenteditable="true">conhecimento sobre os números</div>
+            <button class="botao-bloco" onclick="irParaOutraPagina()">Ir para outra página</button>
+        </div>
+    </div>    
+    <button class="adicionar-bloco" onclick="adicionarBloco()">+</button>
+</div>
+
+<!-- Formulário para escolher imagem -->
+<form id="form-escolher-imagem" style="display: none;">
+    <input type="file" accept="image/*" class="escolher-imagem" onchange="selecionarImagem(this)">
+</form>
+
+<script>
+    function adicionarBloco() {
+        var servicoContainer = document.getElementById('servico-container');
+        var novoBloco = document.createElement('div');
+        novoBloco.classList.add('servico-item');
+
+        var novoTitulo = document.createElement('div');
+        novoTitulo.classList.add('servico-titulo');
+        novoTitulo.setAttribute('contenteditable', 'true');
+        novoTitulo.textContent = 'Novo Título';
+
+        var novaDescricao = document.createElement('div');
+        novaDescricao.classList.add('servico-descricao');
+        novaDescricao.setAttribute('contenteditable', 'true');
+        novaDescricao.textContent = 'Nova Descrição';
+
+        var botao = document.createElement('button');
+        botao.classList.add('botao-bloco');
+        botao.textContent = 'Ir para outra página';
+        botao.onclick = irParaOutraPagina;
+
+        novoBloco.appendChild(novoTitulo);
+        novoBloco.appendChild(novaDescricao);
+        novoBloco.appendChild(botao);
+
+        servicoContainer.appendChild(novoBloco);
+    }
+
+    function irParaOutraPagina() {
+        // Criar uma nova página dinamicamente
+        var novaPagina = document.createElement('html');
+        var novoHead = document.createElement('head');
+        var novoBody = document.createElement('body');
+
+        // Carregar o conteúdo do modelo HTML na nova página
+        fetch('modelo.html')
+            .then(response => response.text())
+            .then(html => {
+                novoBody.innerHTML = html;
+
+            });
+            function criarNovaPagina() {
+        var novaPagina = window.open('', '_blank');
+        novaPagina.document.write(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Nova Página</title>
+                <style>
+                    /* Estilos da nova página */
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #0a0606;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    /* Adicione outros estilos conforme necessário */
+                </style>
+            </head>
+            <body>
+                <!-- Conteúdo da nova página -->
+                <div class="container">
+                    <h2>CONTEÚDO DA NOVA PÁGINA</h2>
+                    <p>Esta é uma nova página criada dinamicamente.</p>
+                    <!-- Adicione o mesmo conteúdo que deseja na nova página -->
+                </div>
+            </body>
+            </html>
+        `);
+        novaPagina.document.close();
+            }
+    }    
+</script>
+
+</body>
+</html>
